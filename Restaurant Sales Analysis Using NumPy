@@ -1,0 +1,41 @@
+# Data structure: [restaurant_id, 2021, 2022, 2023, 2024]
+sales_data = np.array([
+    [1, 150000, 180000, 220000, 250000],  # Paradise Biryani
+    [2, 120000, 140000, 160000, 190000],  # Beijing Bites
+    [3, 200000, 230000, 260000, 300000],  # Pizza Hub
+    [4, 180000, 210000, 240000, 270000],  # Burger Point
+    [5, 160000, 185000, 205000, 230000]   # Chai Point
+])
+
+print(f"--- Basit Sales Analysis --- ")
+print(f"Sales data shape {sales_data.shape}")
+print(f"Sample data for 1-3 restaurents : {sales_data[0:3]}")
+
+#Total Sales Per Year
+yearly_total = np.sum(sales_data[ :, 1:] , axis=0)
+print(f"Yearly Total SALES OF REASTURENT IS: {yearly_total}")
+
+#Minimum sales per reasturent
+min_sales = np.min(sales_data[:,1:] , axis=1) #1 because colum wise in column 1 reasturent
+print(f"Minimum sale: {min_sales}")
+
+#Maximum Sales per Year
+max_sales_peryear = np.max(sales_data[:,1:] , axis=0)
+print(f"Maximum Sales Per Year : {max_sales_peryear}")
+
+#Average Sales Per Year
+avg_sales = np.mean(sales_data[:, 1:] , axis=1)
+print(f"Average Sales of Restaurents Per year is: {avg_sales}")
+
+#Commulative Sales
+comulative_sales = np.cumsum(sales_data[:,1:] , axis=1)
+print(f"Commulative Sales {comulative_sales}")
+
+plt.style.use('default') 
+plt.figure(figsize=(8, 6), facecolor='white')  
+plt.plot(np.mean(comulative_sales, axis=0), color='blue')
+plt.title("Average cumulative sales across all restaurants")
+plt.xlabel("Years")
+plt.ylabel("Sales")
+plt.grid(True)
+plt.show()
